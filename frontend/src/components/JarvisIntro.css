@@ -1,0 +1,94 @@
+.jv {
+  position: fixed; inset: 0; z-index: 10050; overflow: hidden;
+  font-family: 'Share Tech Mono', monospace; color: #c7b8ff;
+  --c1: #8b5cf6; --c2: #22d3ee;
+}
+.jv-door { position: absolute; top: 0; bottom: 0; width: 50.5%; background: #05040a; }
+.jv-door-l { left: 0; border-right: 1px solid rgba(139, 92, 246, 0.5); }
+.jv-door-r { right: 0; border-left: 1px solid rgba(139, 92, 246, 0.5); }
+
+.jv-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.09) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(circle at center, #000 0, transparent 70%);
+  mask-image: radial-gradient(circle at center, #000 0, transparent 70%);
+}
+.jv-flash {
+  position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  background: radial-gradient(circle, var(--c2), transparent 60%);
+}
+.jv-scan {
+  position: absolute; left: 0; right: 0; top: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--c2), transparent);
+  box-shadow: 0 0 20px var(--c2);
+}
+
+.jv-stage { position: absolute; inset: 0; display: grid; place-items: center; }
+.jv-stage > * { grid-area: 1 / 1; }
+.jv-hud { width: min(92vmin, 760px); height: min(92vmin, 760px); }
+
+.jv-center { display: grid; place-items: center; text-align: center; pointer-events: none; }
+.jv-center > * { grid-area: 1 / 1; }
+
+.jv-pct {
+  font-family: 'Orbitron', sans-serif; font-weight: 800;
+  font-size: clamp(2.5rem, 9vmin, 5rem); color: #fff; text-shadow: 0 0 24px var(--c1);
+}
+.jv-pct small { font-size: 0.4em; color: var(--c2); margin-left: 4px; }
+
+.jv-title {
+  font-family: 'Orbitron', sans-serif; font-weight: 800;
+  font-size: clamp(2.2rem, 9vmin, 5.5rem); color: #fff; line-height: 1;
+  text-shadow: 0 0 20px var(--c1), 0 0 60px var(--c1);
+}
+.jv-letter { display: inline-block; width: 0.85em; text-align: center; }
+.jv-sub { margin-top: 1rem; font-size: clamp(0.6rem, 1.6vmin, 0.8rem); color: var(--c2); }
+
+.jv-corner { position: absolute; width: 44px; height: 44px; border: 1px solid var(--c2); }
+.jv-corner.tl { top: 24px; left: 24px; border-right: 0; border-bottom: 0; }
+.jv-corner.tr { top: 24px; right: 24px; border-left: 0; border-bottom: 0; }
+.jv-corner.bl { bottom: 24px; left: 24px; border-right: 0; border-top: 0; }
+.jv-corner.br { bottom: 24px; right: 24px; border-left: 0; border-top: 0; }
+.jv-tag { position: absolute; top: 32px; font-size: 12px; letter-spacing: 0.2em; color: var(--c2); }
+.jv-tag-l { left: 84px; }
+.jv-tag-r { right: 84px; }
+
+.jv-log { position: absolute; left: 84px; bottom: 36px; font-size: 13px; line-height: 1.8; letter-spacing: 0.08em; }
+.jv-line span { color: var(--c2); }
+.jv-line.ok { color: #fff; text-shadow: 0 0 10px var(--c2); }
+
+@media (max-width: 640px) {
+  .jv-log { left: 24px; bottom: 90px; font-size: 11px; }
+  .jv-tag { display: none; }
+}
+
+.jv-gate { background: #05040a; display: grid; place-items: center; }
+.jv-gate-ring {
+  position: absolute; border-radius: 50%;
+  width: min(80vmin, 560px); aspect-ratio: 1;
+}
+.jv-gate-ring-a { border: 1px dashed rgba(139, 92, 246, 0.5); }
+.jv-gate-ring-b { width: min(64vmin, 450px); border: 1px solid rgba(34, 211, 238, 0.25); border-top-color: var(--c2); }
+.jv-gate-inner { position: relative; z-index: 1; display: grid; justify-items: center; gap: 1.4rem; text-align: center; }
+.jv-gate-tag { font-size: 12px; letter-spacing: 0.4em; color: var(--c2); }
+.jv-gate-title {
+  font-family: 'Orbitron', sans-serif; font-weight: 800; color: #fff;
+  font-size: clamp(2rem, 8vmin, 4.5rem); letter-spacing: 0.3em; padding-left: 0.3em;
+  text-shadow: 0 0 20px var(--c1), 0 0 60px var(--c1);
+}
+.jv-gate-btn {
+  font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: 0.9rem;
+  letter-spacing: 0.35em; text-transform: uppercase; color: #fff;
+  background: rgba(34, 211, 238, 0.08); border: 1px solid var(--c2);
+  padding: 1rem 2.2rem 1rem 2.5rem; border-radius: 999px; cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.jv-gate-btn:hover { background: rgba(34, 211, 238, 0.22); transform: scale(1.05); }
+.jv-gate-skip {
+  background: none; border: 0; cursor: pointer; font-family: inherit;
+  font-size: 12px; letter-spacing: 0.15em; color: #6b6890;
+}
+.jv-gate-skip:hover { color: var(--c2); }
